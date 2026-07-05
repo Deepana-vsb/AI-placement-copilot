@@ -41,6 +41,7 @@ public class AuthController {
         String password = body.get("password");
         String college = body.get("college");
         String branchYear = body.get("branchYear");
+        String location = body.get("location");
 
         if (name == null || email == null || password == null || college == null || branchYear == null) {
             return ResponseEntity.badRequest().body(Map.of("error", "All fields are required"));
@@ -61,6 +62,10 @@ public class AuthController {
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
         User user = new User(name, email.toLowerCase(), passwordHash, college, branchYear, Instant.now());
+        if (location != null && !location.trim().isEmpty()) {
+            user.setLocation(location);
+        }
+        
         User savedUser;
         try {
             offlineDbService.saveUser(user);

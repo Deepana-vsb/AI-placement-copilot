@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Sidebar from "@/components/Sidebar";
+import CollegeAutocomplete from "@/components/CollegeAutocomplete";
 
 export default function Settings() {
   const [formData, setFormData] = useState({
@@ -317,12 +318,11 @@ export default function Settings() {
 
             <div className="space-y-xs col-span-2">
               <label className="font-semibold text-xs text-on-surface block">College Name</label>
-              <input
-                type="text"
+              <CollegeAutocomplete
+                variant="settings"
                 value={formData.college}
-                onChange={(e) => setFormData({ ...formData, college: e.target.value })}
-                className="w-full px-md py-3 bg-[#faf8ff] border border-outline-variant rounded-xl text-sm text-on-surface"
-                required
+                onChange={(val) => setFormData({ ...formData, college: val })}
+                onLocationDetected={(loc) => setFormData(prev => ({ ...prev, location: loc }))}
               />
             </div>
 

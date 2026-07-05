@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import CollegeAutocomplete from "@/components/CollegeAutocomplete";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function SignupPage() {
     password: "",
     confirmPassword: "",
     terms: false,
+    location: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -59,6 +61,7 @@ export default function SignupPage() {
           password: formData.password,
           college: formData.college,
           branchYear: `${formData.branch} (${formData.year})`,
+          location: formData.location,
         }),
       });
 
@@ -179,23 +182,12 @@ export default function SignupPage() {
             {/* College Name */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold block" style={{ color: "#374151" }}>College Name</label>
-              <div className="relative group">
-                <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px]"
-                  style={{ color: "#9CA3AF" }}>school</span>
-                <input
-                  name="college" type="text" required
-                  value={formData.college} onChange={handleChange}
-                  className={`${inputCls} pl-11 pr-4`}
-                  style={{
-                    background: "#F9FAFB",
-                    border: "1.5px solid #E5E7EB",
-                    color: "#111827",
-                  }}
-                  onFocus={e => { e.target.style.border = "1.5px solid #4F46E5"; e.target.style.boxShadow = "0 0 0 3px rgba(79,70,229,0.08)"; }}
-                  onBlur={e => { e.target.style.border = "1.5px solid #E5E7EB"; e.target.style.boxShadow = "none"; }}
-                  placeholder="Enter your college name"
-                />
-              </div>
+              <CollegeAutocomplete
+                variant="signup"
+                value={formData.college}
+                onChange={(val) => setFormData(prev => ({ ...prev, college: val }))}
+                onLocationDetected={(loc) => setFormData(prev => ({ ...prev, location: loc }))}
+              />
             </div>
 
             {/* Branch & Year */}

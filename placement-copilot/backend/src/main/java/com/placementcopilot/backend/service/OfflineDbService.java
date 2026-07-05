@@ -36,6 +36,15 @@ public class OfflineDbService {
         this.dbOffline = dbOffline;
     }
 
+    public Map<String, User> getUsers() { return users; }
+    public Map<String, Onboarding> getOnboardings() { return onboardings; }
+    public Map<String, InterviewSession> getInterviewSessions() { return interviewSessions; }
+    public Map<String, PlannerFolder> getPlannerFolders() { return plannerFolders; }
+    public Map<String, PlannerTask> getPlannerTasks() { return plannerTasks; }
+    public Map<String, ResumeReview> getResumeReviews() { return resumeReviews; }
+    public Map<String, XpEvent> getXpEvents() { return xpEvents; }
+    public Map<String, PracticeSubmission> getPracticeSubmissions() { return practiceSubmissions; }
+
     @PostConstruct
     public void init() {
         File dir = new File(DB_DIR);
