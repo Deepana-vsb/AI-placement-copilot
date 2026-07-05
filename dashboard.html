@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Placement Copilot - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#47464f",
+                    "surface-dim": "#d2d9f4",
+                    "secondary": "#006a61",
+                    "on-secondary-fixed-variant": "#005049",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#8683ba",
+                    "tertiary": "#140900",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#eaedff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#c07a00",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed": "#00201d",
+                    "surface-tint": "#5b598c",
+                    "tertiary-container": "#331d00",
+                    "inverse-on-surface": "#eef0ff",
+                    "surface-container-highest": "#dae2fd",
+                    "inverse-primary": "#c4c1fb",
+                    "on-primary-fixed": "#181445",
+                    "on-primary-fixed-variant": "#444173",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#787680",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-container-high": "#e2e7ff",
+                    "secondary-container": "#86f2e4",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "primary-fixed-dim": "#c4c1fb",
+                    "surface-variant": "#dae2fd",
+                    "outline-variant": "#c8c5d0",
+                    "primary-fixed": "#e3dfff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-background": "#131b2e",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-container": "#006f66",
+                    "on-surface": "#131b2e",
+                    "secondary-fixed": "#89f5e7",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary-container": "#1e1b4b",
+                    "primary": "#070235",
+                    "inverse-surface": "#283044",
+                    "surface-container-low": "#f2f3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "container-max": "1280px",
+                    "md": "16px",
+                    "gutter": "24px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "xl": "40px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            color: #131b2e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid #E2E8F0;
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .shadow-soft {
+            box-shadow: 0 4px 6px -1px rgba(30, 27, 75, 0.1);
+        }
+        .nav-item-active {
+            background-color: #86f2e4; /* secondary-container */
+            color: #006f66; /* on-secondary-container */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen pb-24 md:pb-0 md:pl-64 pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+<h1 class="font-display-lg text-title-md font-black text-primary">Placement Copilot</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-high rounded-full transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young student in their early twenties, looking confident and approachable. The lighting is soft and warm, characteristic of a high-end corporate portrait. The background is a clean, minimalist office environment with subtle hints of blue and indigo tones to match the UI theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx5alJaMgayiBHZVQIuq7L76EHpi6HAdmm8Gp3poFQ4m16KmiK65SfW50QAl_kDvLtuTobFyGjPlgdmlnq0GywgV_pPq7cL8vDC0LcUnQ1PqPPvq86wzo8gymTfqu2J2cHU_OvFGwavepK8quODBoep4R7AOd5G6LXd6aWFEMwC7mMxUu4ouQFzHqkptVMapnl0FIfqTTLgeTiM57KzQgIaNggvfp-gum8wgKw9hzL2rXQs7FW2ZcRvdTU-Ie0VTsI5al8yluZGnY"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-16 bottom-0 py-lg w-64 bg-surface-container-low border-r border-outline-variant z-40">
+<div class="px-md mb-lg">
+<h2 class="font-label-md text-label-md text-primary px-4 py-2 uppercase tracking-wider">Main Menu</h2>
+<nav class="space-y-2">
+<a class="flex items-center gap-md px-4 py-3 bg-primary text-on-primary rounded-r-full font-bold mr-4 translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:pl-6 rounded-r-full mr-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">exercise</span>
+<span class="font-label-md text-label-md">Practice</span>
+</a>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:pl-6 rounded-r-full mr-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Planner</span>
+</a>
+</nav>
+</div>
+<div class="px-md mt-auto">
+<h2 class="font-label-md text-label-md text-primary px-4 py-2 uppercase tracking-wider">AI Agents</h2>
+<nav class="space-y-2">
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:pl-6 rounded-r-full mr-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label-md">Coding Agent</span>
+</a>
+<a class="flex items-center gap-md px-4 py-3 text-on-surface-variant hover:bg-surface-container-high hover:pl-6 rounded-r-full mr-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="font-label-md">Mock Interviews</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="max-w-7xl mx-auto p-md md:p-xl space-y-lg">
+<!-- Welcome Section -->
+<section class="flex flex-col md:flex-row md:items-center justify-between gap-lg bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-soft relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label-md text-primary-fixed-dim uppercase tracking-widest mb-1">Welcome back,</p>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Alex Chen</h2>
+<p class="text-on-surface-variant font-body-md mt-2 max-w-md">You're making great progress! Keep the momentum going to reach your dream placement goal.</p>
+</div>
+<!-- Circular Progress -->
+<div class="flex items-center gap-lg">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full">
+<circle class="text-surface-container stroke-current" cx="64" cy="64" fill="transparent" r="54" stroke-width="10"></circle>
+<circle class="text-secondary stroke-current progress-ring-circle" cx="64" cy="64" fill="transparent" r="54" stroke-dasharray="339.29" stroke-dashoffset="108.57" stroke-linecap="round" stroke-width="10"></circle> <!-- 68% of 339.29 = 230.71, offset = 339.29 - 230.71 = 108.57 -->
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-title-md text-primary">68%</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Ready</span>
+</div>
+</div>
+<div class="hidden md:block">
+<h3 class="font-title-md text-primary">Placement Ready</h3>
+<p class="text-label-sm text-on-surface-variant">Top 5% of candidates</p>
+</div>
+</div>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-md md:gap-lg">
+<!-- Stat Card 1 -->
+<div class="glass-card p-md rounded-xl shadow-soft flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-tertiary-fixed-dim bg-tertiary-container/10 p-2 rounded-lg">local_fire_department</span>
+<span class="text-label-sm text-on-secondary bg-secondary px-2 py-0.5 rounded-full">Active</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase font-bold">Coding Streak</p>
+<h4 class="font-headline-lg text-title-md text-primary">14 Days</h4>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 70%"></div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="glass-card p-md rounded-xl shadow-soft flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary bg-primary-fixed/30 p-2 rounded-lg">description</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase font-bold">Resume Score</p>
+<h4 class="font-headline-lg text-title-md text-primary">84%</h4>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 84%"></div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="glass-card p-md rounded-xl shadow-soft flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary bg-secondary-container/30 p-2 rounded-lg">star</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase font-bold">Interview Avg</p>
+<h4 class="font-headline-lg text-title-md text-primary">4.8/5</h4>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 96%"></div>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="glass-card p-md rounded-xl shadow-soft flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-error bg-error-container/30 p-2 rounded-lg">timer</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase font-bold">Days to Target</p>
+<h4 class="font-headline-lg text-title-md text-primary">08 Days</h4>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-error h-full" style="width: 25%"></div>
+</div>
+</div>
+</section>
+<!-- Bento Sections -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Today's Plan -->
+<div class="lg:col-span-7 glass-card p-lg rounded-xl shadow-soft">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-title-md text-primary">Today's Plan</h3>
+<span class="text-label-sm text-primary font-bold">3 Tasks Remaining</span>
+</div>
+<div class="space-y-md">
+<label class="flex items-center gap-md p-md bg-surface-container-lowest rounded-lg border border-outline-variant hover:border-primary transition-all cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<div class="flex-1">
+<p class="font-label-md text-primary group-hover:translate-x-1 transition-transform">Solve 2 Hard DP Problems</p>
+<p class="text-label-sm text-on-surface-variant">Estimated: 1.5 Hours</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100">chevron_right</span>
+</label>
+<label class="flex items-center gap-md p-md bg-surface-container-lowest rounded-lg border border-outline-variant hover:border-primary transition-all cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<div class="flex-1">
+<p class="font-label-md text-primary group-hover:translate-x-1 transition-transform">AI Mock Interview: System Design</p>
+<p class="text-label-sm text-on-surface-variant">Scheduled for 4:00 PM</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100">chevron_right</span>
+</label>
+<label class="flex items-center gap-md p-md bg-surface-container-lowest rounded-lg border border-outline-variant hover:border-primary transition-all cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<div class="flex-1">
+<p class="font-label-md text-primary group-hover:translate-x-1 transition-transform">Update Portfolio Case Study</p>
+<p class="text-label-sm text-on-surface-variant">Design Mockups</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100">chevron_right</span>
+</label>
+</div>
+</div>
+<!-- Weak Topic Alert -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<div class="bg-error-container/20 p-lg rounded-xl border border-error/20 flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute -right-8 -top-8 text-8xl text-error/5 group-hover:rotate-12 transition-transform duration-500">
+<span class="material-symbols-outlined" style="font-size: 160px">warning</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h3 class="font-title-md text-error">Weak Topic Alert</h3>
+</div>
+<div class="relative z-10">
+<h4 class="font-headline-lg-mobile text-primary mb-1">Dynamic Programming</h4>
+<p class="text-label-md text-on-surface-variant">Your success rate in DP is 42% lower than other categories. It's time to bridge the gap.</p>
+</div>
+<button class="bg-primary text-on-primary py-3 rounded-lg font-bold flex items-center justify-center gap-sm hover:bg-primary/90 active:scale-95 transition-all">
+                        Practice DP Now
+                        <span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+<!-- Small Callout Card -->
+<div class="bg-secondary-container p-md rounded-xl flex items-center justify-between border border-secondary/20">
+<div>
+<p class="text-label-sm text-on-secondary-fixed-variant font-bold uppercase">Weekly Goal</p>
+<h5 class="font-title-md text-on-secondary-fixed">8/10 Problems Done</h5>
+</div>
+<span class="material-symbols-outlined text-4xl text-on-secondary-fixed-variant">trending_up</span>
+</div>
+</div>
+</section>
+<!-- Recent Activity Feed -->
+<section class="glass-card p-lg rounded-xl shadow-soft">
+<h3 class="font-title-md text-primary mb-lg">Recent Activity</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-md border-b border-surface-container pb-4 last:border-0 last:pb-0">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
+<span class="material-symbols-outlined text-md">code</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-primary">Solved "Longest Common Subsequence"</p>
+<p class="text-label-sm text-on-surface-variant">Category: Dynamic Programming • 2 hours ago</p>
+</div>
+<span class="text-label-sm font-bold text-secondary">+50 XP</span>
+</div>
+<div class="flex items-start gap-md border-b border-surface-container pb-4 last:border-0 last:pb-0">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed flex-shrink-0">
+<span class="material-symbols-outlined text-md">record_voice_over</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-primary">Completed Mock Interview #12</p>
+<p class="text-label-sm text-on-surface-variant">Role: Junior SDE • Yesterday at 5:30 PM</p>
+</div>
+<span class="text-label-sm font-bold text-secondary">+120 XP</span>
+</div>
+<div class="flex items-start gap-md border-b border-surface-container pb-4 last:border-0 last:pb-0">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0">
+<span class="material-symbols-outlined text-md">emoji_events</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-primary">Earned Badge: "2-Week Streak"</p>
+<p class="text-label-sm text-on-surface-variant">Unlocked after 14 days of consistent practice</p>
+</div>
+<span class="text-label-sm font-bold text-tertiary">Achievement</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe bg-surface border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(30,27,75,0.1)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">exercise</span>
+<span class="font-label-sm">Practice</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm">Planner</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for task checking
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const text = this.nextElementSibling.querySelector('p');
+                if (this.checked) {
+                    text.classList.add('line-through', 'opacity-50');
+                } else {
+                    text.classList.remove('line-through', 'opacity-50');
+                }
+            });
+        });
+    </script>
+</body></html>

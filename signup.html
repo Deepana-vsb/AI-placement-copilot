@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up | Placement Copilot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- The Source of Truth Hierarchy: Applying Shared Components JSON & Style Guidance -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#c07a00",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-dim": "#d2d9f4",
+                    "surface-container-highest": "#dae2fd",
+                    "primary-fixed": "#e3dfff",
+                    "on-primary-container": "#8683ba",
+                    "on-tertiary-fixed": "#2a1700",
+                    "secondary-container": "#86f2e4",
+                    "on-surface-variant": "#47464f",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#1e1b4b",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#5b598c",
+                    "surface-container-low": "#f2f3ff",
+                    "tertiary": "#140900",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#131b2e",
+                    "surface": "#faf8ff",
+                    "on-primary-fixed": "#181445",
+                    "secondary-fixed": "#89f5e7",
+                    "inverse-primary": "#c4c1fb",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#dae2fd",
+                    "on-secondary-fixed-variant": "#005049",
+                    "primary-fixed-dim": "#c4c1fb",
+                    "inverse-surface": "#283044",
+                    "secondary": "#006a61",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#faf8ff",
+                    "outline": "#787680",
+                    "on-error": "#ffffff",
+                    "primary": "#070235",
+                    "background": "#faf8ff",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary-container": "#331d00",
+                    "on-secondary-container": "#006f66",
+                    "on-primary-fixed-variant": "#444173",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-secondary-fixed": "#00201d",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "outline-variant": "#c8c5d0",
+                    "surface-container-high": "#e2e7ff",
+                    "surface-container": "#eaedff",
+                    "on-surface": "#131b2e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "container-max": "1280px",
+                    "base": "4px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Level 0 Background from Style Guidance */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 6px -1px rgba(30, 27, 75, 0.05), 0 2px 4px -2px rgba(30, 27, 75, 0.05);
+        }
+        .focused-input:focus-within {
+            border-color: #1E1B4B;
+            box-shadow: 0 0 0 2px rgba(30, 27, 75, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center justify-center p-md md:p-lg selection:bg-secondary-container">
+<!-- Auth Container -->
+<main class="w-full max-w-[440px] animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Main Form Card -->
+<div class="glass-card rounded-xl p-lg md:p-xl flex flex-col">
+<!-- Brand Anchor -->
+<div class="flex flex-col items-center mb-lg">
+<div class="w-12 h-12 bg-primary-container text-on-primary rounded-xl flex items-center justify-center mb-md shadow-sm transition-transform hover:scale-110 duration-300">
+<span class="material-symbols-outlined text-[28px]" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface text-center">Join Placement Copilot</h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-center mt-xs">Accelerate your career journey today</p>
+</div>
+<!-- Form -->
+<form class="space-y-md" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface block">Full Name</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="person">person</span>
+<input class="w-full pl-10 pr-md py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-outline-variant" placeholder="John Doe" type="text"/>
+</div>
+</div>
+<!-- College Email -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface block">College Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="mail">mail</span>
+<input class="w-full pl-10 pr-md py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-outline-variant" placeholder="name@university.edu" type="email"/>
+</div>
+</div>
+<!-- College Name -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface block">College Name</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="school">school</span>
+<input class="w-full pl-10 pr-md py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-outline-variant" placeholder="Stanford University" type="text"/>
+</div>
+</div>
+<!-- Branch & Year -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface block">Branch</label>
+<select class="w-full px-md py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all appearance-none cursor-pointer">
+<option>CS / IT</option>
+<option>Mechanical</option>
+<option>Electrical</option>
+<option>Other</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface block">Year</label>
+<select class="w-full px-md py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all appearance-none cursor-pointer">
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+<option>4th Year</option>
+</select>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface block">Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="lock">lock</span>
+<input class="w-full pl-10 pr-12 py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-outline-variant" id="password-field" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" onclick="togglePassword('password-field')" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface block">Confirm Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="lock">lock</span>
+<input class="w-full pl-10 pr-12 py-3 bg-surface border border-outline-variant rounded-xl font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-outline-variant" id="confirm-password-field" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Terms -->
+<div class="flex items-start gap-sm pt-xs">
+<input class="mt-1 w-4 h-4 text-primary bg-surface border-outline-variant rounded focus:ring-primary cursor-pointer" id="terms" type="checkbox"/>
+<label class="font-label-sm text-label-sm text-on-surface-variant cursor-pointer" for="terms">
+                        I agree to the <a class="text-primary font-bold hover:underline" href="#">Terms of Service</a> and <a class="text-primary font-bold hover:underline" href="#">Privacy Policy</a>.
+                    </label>
+</div>
+<!-- Create Account Button -->
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-xl shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 mt-md">
+                    Create Account
+                </button>
+</form>
+<!-- Divider -->
+<div class="relative flex items-center my-lg">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-4 font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">OR</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Google Sign Up -->
+<button class="w-full flex items-center justify-center gap-sm bg-surface border border-outline-variant py-3 rounded-xl hover:bg-surface-container-low active:scale-95 transition-all duration-200">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnA5pFUqd9A1pT968hdTRJ3hqbu0jZs8OTFzFcuOO6hEC9EFkmqoS7DeZcxRfHTmgBbs0OUH3ssXQFU2SPKeJbo2x303q0BWjhtMeYeKfsqundOt9YRUumQzt3xMTmmmWWVOKzy8uajgUOEjNlcnTUJ9Oo4TruK8_8oHD4grYDi8DzAmxGE4jlWKZI3NdjIfvgovxDMp8SbQaD-6vLk4kOJBsv-ot28Tk25hERjgllbAk3e4jHGKnT6zVNBl3Tioyg9wmrqfoMzG0"/>
+<span class="font-label-md text-label-md text-on-surface">Sign up with Google</span>
+</button>
+<!-- Footer Link -->
+<div class="mt-lg text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Already have an account? 
+                    <a class="text-primary font-bold hover:underline ml-1" href="#">Sign In</a>
+</p>
+</div>
+</div>
+<!-- Motivational Micro-copy Strip -->
+<div class="mt-lg flex justify-center">
+<div class="inline-flex items-center gap-2 px-md py-2 bg-secondary-container/20 rounded-full border border-secondary-container/30 backdrop-blur-sm animate-pulse-slow">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-sm text-label-sm text-secondary">Join 10,000+ students preparing smarter</span>
+</div>
+</div>
+</main>
+<!-- Visual Background Element (Subtle) -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-40">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-container rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary-container rounded-full blur-[120px]"></div>
+</div>
+<script>
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const button = event.currentTarget;
+            const icon = button.querySelector('.material-symbols-outlined');
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.innerText = "visibility_off";
+            } else {
+                passwordField.type = "password";
+                icon.innerText = "visibility";
+            }
+        }
+
+        // Add a subtle parallax effect to the card
+        document.addEventListener('mousemove', (e) => {
+            const card = document.querySelector('.glass-card');
+            const rect = card.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            
+            const rotateX = mouseY * -0.005;
+            const rotateY = mouseX * 0.005;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+    </script>
+</body></html>

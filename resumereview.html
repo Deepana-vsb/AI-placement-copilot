@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resume Review — Placement Copilot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#47464f",
+                    "surface-dim": "#d2d9f4",
+                    "secondary": "#006a61",
+                    "on-secondary-fixed-variant": "#005049",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#8683ba",
+                    "tertiary": "#140900",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#eaedff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#c07a00",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed": "#00201d",
+                    "surface-tint": "#5b598c",
+                    "tertiary-container": "#331d00",
+                    "inverse-on-surface": "#eef0ff",
+                    "surface-container-highest": "#dae2fd",
+                    "inverse-primary": "#c4c1fb",
+                    "on-primary-fixed": "#181445",
+                    "on-primary-fixed-variant": "#444173",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#787680",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-container-high": "#e2e7ff",
+                    "secondary-container": "#86f2e4",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "primary-fixed-dim": "#c4c1fb",
+                    "surface-variant": "#dae2fd",
+                    "outline-variant": "#c8c5d0",
+                    "primary-fixed": "#e3dfff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-background": "#131b2e",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-container": "#006f66",
+                    "on-surface": "#131b2e",
+                    "secondary-fixed": "#89f5e7",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary-container": "#1e1b4b",
+                    "primary": "#070235",
+                    "inverse-surface": "#283044",
+                    "surface-container-low": "#f2f3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "container-max": "1280px",
+                    "md": "16px",
+                    "gutter": "24px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "xl": "40px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            color: #131B2E;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 10px;
+        }
+        .ats-ring {
+            transition: stroke-dashoffset 1s ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="rocket_launch">rocket_launch</span>
+<h1 class="font-display-lg text-display-lg font-black text-primary">Placement Copilot</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border-2 border-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up headshot of a diverse male professional in his early 30s, wearing a clean, modern navy suit. The lighting is soft and studio-quality against a minimalist off-white background, embodying a high-end corporate SaaS aesthetic with clarity and professional confidence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK4sKjMGG2TftCAvRyB3-X08rlJ9pLgfefGq-3drywhU_18ZWjNv9BvUGcoMXG6EdmXM7HZKnB5klzg09xr4ncVUWL8sV9IjPKvGtwO9RYeeL5Dd3F9z5cuf_CmPH_-x58c1HVLNTDrPY0ys5wuWb17NVa0hIPBlK_fx2l8CLhJFVPXdtwKZwQi4-_TUWtZmurhSpdaf8Q9qi83lJ5GGc9N0eFvf5XdWX__7Qw8cK0BgeE6f41wS5_dcZzkrK2oz4Ha224-8KleS4"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation (Desktop) -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-16 bottom-0 py-lg w-64 bg-surface-container-low border-r border-outline-variant z-40">
+<div class="px-md mb-lg">
+<h2 class="font-label-md text-label-md uppercase tracking-wider text-outline px-4">Menu</h2>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-md px-6 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full mr-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-6 py-3 bg-primary text-on-primary rounded-r-full font-bold mr-4 translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Resume Review</span>
+</a>
+<a class="flex items-center gap-md px-6 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full mr-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+<span class="font-label-md text-label-md">Coding Agent</span>
+</a>
+<a class="flex items-center gap-md px-6 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-r-full mr-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">Aptitude</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 lg:pl-64 lg:pb-8 min-h-screen">
+<div class="max-w-[1200px] mx-auto px-md md:px-lg">
+<!-- Breadcrumbs & Header -->
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<div class="flex items-center gap-xs text-outline mb-1">
+<span class="font-label-sm text-label-sm">Dashboard</span>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary">Resume Review</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Optimizer Lab</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Reviewing: <span class="font-semibold">Software_Engineer_Intern.pdf</span></p>
+</div>
+<button class="flex items-center gap-sm px-6 py-3 bg-primary-container text-on-primary-container rounded-xl font-bold hover:bg-opacity-90 transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+<span>Download Improved Resume</span>
+</button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Left Column: Resume Preview -->
+<div class="lg:col-span-7 h-[calc(100vh-280px)] min-h-[600px] flex flex-col">
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm flex-1 overflow-hidden flex flex-col">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="visibility">visibility</span>
+<span class="font-label-md text-label-md text-on-surface">Preview</span>
+</div>
+<div class="flex items-center gap-base">
+<button class="p-1.5 hover:bg-surface-container-high rounded transition-colors"><span class="material-symbols-outlined text-on-surface-variant" data-icon="zoom_in">zoom_in</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded transition-colors"><span class="material-symbols-outlined text-on-surface-variant" data-icon="zoom_out">zoom_out</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded transition-colors"><span class="material-symbols-outlined text-on-surface-variant" data-icon="fullscreen">fullscreen</span></button>
+</div>
+</div>
+<div class="flex-1 bg-surface-dim p-lg overflow-y-auto custom-scrollbar flex justify-center">
+<!-- Resume Sheet Representation -->
+<div class="w-full max-w-[600px] bg-white shadow-lg p-xl min-h-[842px] border border-outline-variant relative">
+<div class="absolute top-0 left-0 w-1 bg-secondary h-full"></div>
+<div class="mb-lg">
+<div class="h-8 w-48 bg-surface-container-high rounded mb-4"></div>
+<div class="h-3 w-72 bg-surface-container rounded mb-2"></div>
+<div class="h-3 w-64 bg-surface-container rounded"></div>
+</div>
+<div class="space-y-md">
+<div class="flex justify-between items-center border-b border-surface-container-high pb-1">
+<div class="h-4 w-32 bg-surface-container-highest rounded"></div>
+<div class="h-3 w-20 bg-surface-container rounded"></div>
+</div>
+<div class="h-3 w-full bg-surface-container rounded"></div>
+<div class="h-3 w-full bg-surface-container rounded"></div>
+<div class="h-3 w-[90%] bg-surface-container rounded"></div>
+<div class="pt-md flex justify-between items-center border-b border-surface-container-high pb-1">
+<div class="h-4 w-40 bg-surface-container-highest rounded"></div>
+<div class="h-3 w-20 bg-surface-container rounded"></div>
+</div>
+<div class="h-3 w-full bg-surface-container rounded"></div>
+<div class="h-3 w-full bg-surface-container rounded"></div>
+<div class="h-3 w-[85%] bg-surface-container rounded"></div>
+<!-- Highlighting Annotation Example -->
+<div class="relative bg-secondary-container bg-opacity-20 border-l-2 border-secondary p-2 -mx-2">
+<div class="h-3 w-[95%] bg-surface-container rounded mb-2"></div>
+<div class="absolute -right-4 top-0 translate-x-full bg-white border border-secondary p-2 rounded-lg shadow-md w-32">
+<p class="text-[10px] text-secondary font-bold">MISSING KEYWORD</p>
+<p class="text-[10px] leading-tight mt-1 text-on-surface">Add "Cloud Infrastructure" here.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Feedback & ATS -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<!-- ATS Score Card -->
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm p-lg flex items-center gap-lg">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary ats-ring" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="102" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-display-lg text-headline-lg font-black text-on-background leading-none">72</span>
+<span class="font-label-sm text-label-sm text-outline">/ 100</span>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-title-md text-title-md text-on-background mb-1">ATS Score</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">Your resume is strong, but missing key technical requirements for AI roles.</p>
+<div class="flex items-center gap-sm">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded uppercase">Medium Risk</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded uppercase">8 Matches</span>
+</div>
+</div>
+</div>
+<!-- Categorized Feedback Section -->
+<div class="flex flex-col gap-md">
+<h4 class="font-label-md text-label-md text-outline uppercase tracking-wider px-1">Action Items</h4>
+<!-- Grammar Card -->
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm p-md hover:border-primary transition-all">
+<div class="flex items-start gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="spellcheck">spellcheck</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h5 class="font-title-md text-body-md font-bold text-on-background">Grammar &amp; Impact</h5>
+<span class="text-error font-bold text-xs">2 Issues</span>
+</div>
+<p class="font-body-md text-label-md text-on-surface-variant mb-4">"Developed" is used 4 times. Switch to high-impact action verbs like "Spearheaded" or "Architected".</p>
+<div class="flex gap-sm">
+<button class="text-primary font-bold text-xs hover:underline">Apply All Fixes</button>
+<span class="text-outline text-xs">•</span>
+<button class="text-outline font-bold text-xs hover:text-on-surface">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Keywords Card -->
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm p-md hover:border-primary transition-all">
+<div class="flex items-start gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container text-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h5 class="font-title-md text-body-md font-bold text-on-background">Missing Keywords</h5>
+<span class="text-tertiary-fixed-dim font-bold text-xs">4 Critical</span>
+</div>
+<div class="flex flex-wrap gap-xs mb-3">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-semibold text-on-surface-variant">Docker</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-semibold text-on-surface-variant">Kubernetes</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-semibold text-on-surface-variant">CI/CD</span>
+</div>
+<p class="font-body-md text-label-md text-on-surface-variant">Add these to your skills section to increase ATS visibility for DevOps roles.</p>
+</div>
+</div>
+</div>
+<!-- Formatting Card -->
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm p-md hover:border-primary transition-all">
+<div class="flex items-start gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest text-on-surface-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="format_align_left">format_align_left</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h5 class="font-title-md text-body-md font-bold text-on-background">Formatting</h5>
+<span class="text-secondary font-bold text-xs">Optimized</span>
+</div>
+<p class="font-body-md text-label-md text-on-surface-variant">Layout is standard and readable by all major ATS parsers. Margins are consistent.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Drag and Drop Zone (Bottom Right Small) -->
+<div class="bg-surface-container border-2 border-dashed border-outline-variant rounded-xl p-lg text-center hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="mb-sm flex justify-center">
+<span class="material-symbols-outlined text-4xl text-outline group-hover:text-primary transition-colors" data-icon="upload_file">upload_file</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Update Resume</p>
+<p class="font-label-sm text-[10px] text-outline">Drag and drop or click to upload</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe bg-surface border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(30,27,75,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-sm text-label-sm">Resume</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.style.transform = 'scale(0.95)';
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.style.transform = 'scale(1)';
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simulating the ATS Ring animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const ring = document.querySelector('.ats-ring');
+            if (ring) {
+                // Circumference is 2 * PI * 58 = ~364.4
+                // Score is 72/100 -> Offset should be 364.4 * (1 - 72/100) = 102
+                ring.style.strokeDashoffset = '364.4';
+                setTimeout(() => {
+                    ring.style.strokeDashoffset = '102';
+                }, 300);
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,19 @@
+# ── Node / Frontend ──────────────────────────────
+node_modules/
+.next/
+out/
+dist/
+build/
+.npm/
+*.tsbuildinfo
+.eslintcache
+
+# ── Env ──────────────────────────────────────────
+.env
+.env.local
+.env.production
+
+# ── Logs ─────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*

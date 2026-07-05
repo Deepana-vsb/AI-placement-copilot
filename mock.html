@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Placement Copilot — Mock Interview Agent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#47464f",
+                        "surface-dim": "#d2d9f4",
+                        "secondary": "#006a61",
+                        "on-secondary-fixed-variant": "#005049",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#8683ba",
+                        "tertiary": "#140900",
+                        "surface": "#faf8ff",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#eaedff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#c07a00",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed": "#00201d",
+                        "surface-tint": "#5b598c",
+                        "tertiary-container": "#331d00",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container-highest": "#dae2fd",
+                        "inverse-primary": "#c4c1fb",
+                        "on-primary-fixed": "#181445",
+                        "on-primary-fixed-variant": "#444173",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#787680",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-container-high": "#e2e7ff",
+                        "secondary-container": "#86f2e4",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "primary-fixed-dim": "#c4c1fb",
+                        "surface-variant": "#dae2fd",
+                        "outline-variant": "#c8c5d0",
+                        "primary-fixed": "#e3dfff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-background": "#131b2e",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-container": "#006f66",
+                        "on-surface": "#131b2e",
+                        "secondary-fixed": "#89f5e7",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-container": "#1e1b4b",
+                        "primary": "#070235",
+                        "inverse-surface": "#283044",
+                        "surface-container-low": "#f2f3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chat-scroll::-webkit-scrollbar { width: 4px; }
+        .chat-scroll::-webkit-scrollbar-track { background: transparent; }
+        .chat-scroll::-webkit-scrollbar-thumb { background: #c8c5d0; border-radius: 10px; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid #e2e8f0; }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-slide-up { animation: slideInUp 0.4s ease-out forwards; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+<h1 class="font-display-lg text-display-lg font-black text-primary !text-[24px]">Placement Copilot</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young software engineer in a clean, high-key setting. The lighting is soft and flattering, emphasizing a bright and welcoming career-oriented atmosphere. The style is modern corporate, with high-definition clarity and a focus on professional approachability, fitting a premium placement prep platform's aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC58BturyxEHtaM56FJw9LJBJl5l6FJLqfZuXzPhf7_L7y_HpsLKM93cEXyR8KsfIrj95EuuvAiroDbs9YR8RJtxwKNJTFiPCg12JqDWjw2NpqCp3ffppyibC-mitubT_fzRg8X2l8XdFUKoxhw0W3mLMNbUMLSFy2lts0iU-zOjFqh7yveltZc2KL5_5YzGvV_m2-bYa_RcbStDFJNuhiwzLIDoEqJFt1W7B8yJBT6YbdiXYQqsfBhdj3WN6mKGyoVb6J_DpNf6sw"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer Shell (Desktop Only) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-16 bottom-0 py-lg w-64 bg-surface-container-low border-r border-outline-variant">
+<div class="px-6 mb-6">
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">AI Agents</h2>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-4 py-3 px-6 text-on-surface-variant hover:bg-surface-container-high rounded-r-full mr-4 transition-all group" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label-md text-label-md">Coding Agent</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-6 text-on-surface-variant hover:bg-surface-container-high rounded-r-full mr-4 transition-all" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">SQL Master</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-6 text-on-surface-variant hover:bg-surface-container-high rounded-r-full mr-4 transition-all" href="#">
+<span class="material-symbols-outlined">coffee</span>
+<span class="font-label-md text-label-md">Java Expert</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-6 text-on-surface-variant hover:bg-surface-container-high rounded-r-full mr-4 transition-all" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-md text-label-md">Aptitude</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-6 bg-primary text-on-primary rounded-r-full mr-4 font-bold transition-all shadow-md" href="#">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="font-label-md text-label-md">Mock Interviews</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-16 pb-20 lg:pb-0 lg:ml-64 min-h-screen flex flex-col items-center">
+<div class="w-full max-w-5xl px-md lg:px-xl py-lg flex flex-col gap-lg h-[calc(100vh-64px)]">
+<!-- Dashboard Title / Context -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Mock Interview Agent</h2>
+<p class="text-on-surface-variant font-body-md">Practice with our AI calibrated for top-tier tech roles.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-xl border border-outline-variant">
+<span class="material-symbols-outlined text-secondary">verified</span>
+<span class="font-label-md text-label-md text-on-surface">Target: Google (L4 SWE)</span>
+</div>
+</div>
+<!-- Bento Layout Container -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg flex-1 overflow-hidden">
+<!-- Left Column: Session Configuration & Feedback (Desktop) -->
+<div class="hidden lg:flex lg:col-span-4 flex-col gap-lg overflow-y-auto pr-2 chat-scroll">
+<!-- Config Card -->
+<section class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-title-md text-title-md text-primary mb-4">Interview Setup</h3>
+<div class="flex flex-col gap-4">
+<div>
+<label class="font-label-sm text-on-surface-variant block mb-2">Category</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 bg-primary text-on-primary rounded-lg font-label-md text-center">Technical</button>
+<button class="py-2 px-3 border border-outline-variant text-on-surface-variant hover:bg-surface-container rounded-lg font-label-md text-center">Behavioral</button>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-on-surface-variant block mb-2">Target Company</label>
+<select class="w-full bg-surface border border-outline-variant rounded-xl p-2 font-body-md focus:ring-2 focus:ring-primary outline-none">
+<option>Google</option>
+<option>Meta</option>
+<option>Amazon</option>
+<option>Netflix</option>
+<option>Microsoft</option>
+</select>
+</div>
+<button class="w-full py-3 bg-secondary text-on-secondary font-label-md rounded-xl shadow-md hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">refresh</span>
+                                Reset Session
+                            </button>
+</div>
+</section>
+<!-- Real-time Metrics Card -->
+<section class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-4">
+<h3 class="font-title-md text-title-md text-primary">Live Sentiment</h3>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between font-label-sm text-on-surface-variant mb-1">
+<span>Clarity</span>
+<span>84%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[84%] transition-all duration-1000"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-on-surface-variant mb-1">
+<span>Technical Depth</span>
+<span>62%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[62%] transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+<div class="p-3 bg-tertiary-fixed rounded-lg flex gap-3 items-start">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">lightbulb</span>
+<p class="font-label-sm text-on-tertiary-fixed-variant">Tip: Try to use more specific examples from your past projects for the Star Method.</p>
+</div>
+</section>
+</div>
+<!-- Right Column: The Chat Interface (The "Agent") -->
+<div class="lg:col-span-8 flex flex-col bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md overflow-hidden relative">
+<!-- Chat Header -->
+<div class="p-4 border-b border-outline-variant bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="font-label-md text-on-surface">Agent: Marcus (Senior Tech Lead)</span>
+</div>
+<span class="text-on-surface-variant font-label-sm">08:45 / 30:00</span>
+</div>
+<!-- Chat Messages Area -->
+<div class="flex-1 p-md lg:p-lg overflow-y-auto flex flex-col gap-lg chat-scroll" id="chat-container">
+<!-- AI Message -->
+<div class="flex gap-3 max-w-[85%] animate-slide-up">
+<div class="w-8 h-8 rounded-full bg-primary-container flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-md">smart_toy</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-2xl rounded-tl-none">
+<p class="font-body-md text-on-surface">Great. Let's dive into a technical scenario. Suppose you're building a real-time analytics dashboard for a high-traffic e-commerce site. How would you handle eventual consistency vs. real-time requirements for stock levels?</p>
+<span class="block mt-2 font-label-sm text-outline">10:02 AM</span>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex gap-3 max-w-[85%] self-end flex-row-reverse animate-slide-up">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-md">person</span>
+</div>
+<div class="bg-primary text-on-primary p-md rounded-2xl rounded-tr-none shadow-md">
+<p class="font-body-md">I would use a distributed caching layer like Redis for high-read stock data while maintaining a strict consistency model in the database for transactional writes. For the dashboard, I might favor a CQRS pattern...</p>
+<span class="block mt-2 font-label-sm text-on-primary-container opacity-70">10:04 AM</span>
+</div>
+</div>
+<!-- AI Message (Typing Indicator) -->
+<div class="flex gap-3 max-w-[85%] animate-slide-up">
+<div class="w-8 h-8 rounded-full bg-primary-container flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-md">smart_toy</span>
+</div>
+<div class="bg-surface-container-high px-4 py-3 rounded-2xl rounded-tl-none flex items-center gap-1">
+<div class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+<div class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+<div class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce"></div>
+</div>
+</div>
+</div>
+<!-- Input Bar -->
+<div class="p-md lg:p-lg border-t border-outline-variant bg-surface-container-low">
+<div class="flex items-center gap-3 bg-surface rounded-2xl p-2 border border-outline-variant focus-within:ring-2 focus-within:ring-primary shadow-inner">
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container-high rounded-xl text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all" id="mic-toggle">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-on-surface" placeholder="Type your response..." type="text"/>
+<button class="w-12 h-12 flex items-center justify-center bg-primary text-on-primary rounded-xl shadow-md hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Shell (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe bg-surface border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(30,27,75,0.1)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">exercise</span>
+<span class="font-label-sm text-label-sm">Practice</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 font-bold" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</footer>
+<!-- FAB Overlay for Feedback Report (Hidden initially, triggered by session end) -->
+<div class="fixed inset-0 z-[100] hidden bg-black/40 backdrop-blur-sm flex items-center justify-center p-md" id="feedback-report">
+<div class="bg-surface rounded-3xl max-w-2xl w-full max-h-[795px] overflow-y-auto shadow-2xl animate-slide-up border border-outline-variant">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-primary text-on-primary sticky top-0 z-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-container">insights</span>
+<h2 class="font-title-md text-title-md">Interview Performance Report</h2>
+</div>
+<button class="material-symbols-outlined hover:bg-white/10 p-2 rounded-full" onclick="toggleReport()">close</button>
+</div>
+<div class="p-lg flex flex-col gap-lg">
+<!-- Score Circle -->
+<div class="flex flex-col items-center py-6">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="91.1" stroke-width="8"></circle>
+</svg>
+<span class="absolute font-display-lg text-primary text-4xl">75<span class="text-xl">%</span></span>
+</div>
+<p class="mt-4 font-label-md text-on-surface-variant">Overall Proficiency: High</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Strengths -->
+<div class="bg-secondary-container/20 p-md rounded-2xl border border-secondary-container">
+<h4 class="font-label-md text-secondary mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-md" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                            Strengths
+                        </h4>
+<ul class="space-y-2">
+<li class="font-body-md text-on-surface flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                Strong architectural thinking
+                            </li>
+<li class="font-body-md text-on-surface flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                Concise and professional tone
+                            </li>
+</ul>
+</div>
+<!-- Weaknesses -->
+<div class="bg-error-container/20 p-md rounded-2xl border border-error-container">
+<h4 class="font-label-md text-error mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-md" style="font-variation-settings: 'FILL' 1;">warning</span>
+                            Focus Areas
+                        </h4>
+<ul class="space-y-2">
+<li class="font-body-md text-on-surface flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-sm">error</span>
+                                Elaboration on edge cases
+                            </li>
+<li class="font-body-md text-on-surface flex items-start gap-2">
+<span class="material-symbols-outlined text-error text-sm">error</span>
+                                Slower response on pricing logic
+                            </li>
+</ul>
+</div>
+</div>
+<!-- Detailed Breakdown -->
+<div class="space-y-4">
+<h4 class="font-title-md text-primary">Skill Assessment</h4>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between font-label-sm text-on-surface-variant mb-1">
+<span>Problem Solving</span>
+<span>80%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[80%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-on-surface-variant mb-1">
+<span>Communication</span>
+<span>92%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[92%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full py-4 bg-primary text-on-primary font-title-md rounded-2xl shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
+                        Download PDF Report
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Trigger Button for Demo -->
+<button class="fixed bottom-20 right-6 lg:bottom-10 lg:right-10 bg-secondary text-on-secondary px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 hover:scale-110 active:scale-90 transition-transform z-40" onclick="toggleReport()">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">View Report</span>
+</button>
+<script>
+        function toggleReport() {
+            const report = document.getElementById('feedback-report');
+            report.classList.toggle('hidden');
+        }
+
+        // Simple visual feedback for mic button
+        const micBtn = document.getElementById('mic-toggle');
+        let isRecording = false;
+        micBtn.addEventListener('click', () => {
+            isRecording = !isRecording;
+            if (isRecording) {
+                micBtn.classList.replace('bg-surface-container-high', 'bg-error');
+                micBtn.classList.replace('text-on-surface-variant', 'text-on-error');
+                micBtn.innerHTML = '<span class="material-symbols-outlined animate-pulse">stop</span>';
+            } else {
+                micBtn.classList.replace('bg-error', 'bg-surface-container-high');
+                micBtn.classList.replace('text-on-error', 'text-on-surface-variant');
+                micBtn.innerHTML = '<span class="material-symbols-outlined">mic</span>';
+            }
+        });
+
+        // Auto-scroll chat to bottom
+        const chatContainer = document.getElementById('chat-container');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    </script>
+</body></html>

@@ -1,0 +1,6 @@
+target/
+*.class
+.env
+*.log
+database/
+offline_db.json

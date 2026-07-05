@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Placement Copilot — Java Practice</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-editor { font-family: 'JetBrains Mono', monospace; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Scrollbar for a more modern feel */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+        /* Subtle glow for the active editor */
+        .editor-focus:focus-within {
+            box-shadow: 0 0 0 2px #1e1b4b1a, 0 0 20px -5px #1e1b4b1a;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#47464f",
+                    "surface-dim": "#d2d9f4",
+                    "secondary": "#006a61",
+                    "on-secondary-fixed-variant": "#005049",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#8683ba",
+                    "tertiary": "#140900",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#eaedff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#c07a00",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed": "#00201d",
+                    "surface-tint": "#5b598c",
+                    "tertiary-container": "#331d00",
+                    "inverse-on-surface": "#eef0ff",
+                    "surface-container-highest": "#dae2fd",
+                    "inverse-primary": "#c4c1fb",
+                    "on-primary-fixed": "#181445",
+                    "on-primary-fixed-variant": "#444173",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#787680",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-container-high": "#e2e7ff",
+                    "secondary-container": "#86f2e4",
+                    "secondary-fixed-dim": "#6bd8cb",
+                    "primary-fixed-dim": "#c4c1fb",
+                    "surface-variant": "#dae2fd",
+                    "outline-variant": "#c8c5d0",
+                    "primary-fixed": "#e3dfff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-background": "#131b2e",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-container": "#006f66",
+                    "on-surface": "#131b2e",
+                    "secondary-fixed": "#89f5e7",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary-container": "#1e1b4b",
+                    "primary": "#070235",
+                    "inverse-surface": "#283044",
+                    "surface-container-low": "#f2f3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "container-max": "1280px",
+                    "md": "16px",
+                    "gutter": "24px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "xl": "40px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<h1 class="font-display-lg text-[24px] font-black text-primary leading-none">Placement Copilot</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex items-center gap-xs px-4 py-2 rounded-full font-label-md text-label-md text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+<span>Pro Member</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young software engineer with a friendly smile, set against a clean, minimalist studio background with soft indigo lighting. The style is modern corporate photography, emphasizing clarity, professional growth, and high-quality detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANR6Jc3Tsi31fh-aACfgDhPa-YMCgvEWc9rziSKmxuix65CK85EJ_SHhz_PDqTSP8IC1zm1XZiE2UndLdfVJrtsj2Qnzj4javPG8vU7uTK0YG3luIgQPC49ai27Nkl77PQET5A--IlmXuuswOdBpjxZl458rGKN9vyGMXMatHSG4riznDRlVEUy7OFcu546wrL9-rUCShiVIsmLdmmZdCcq8DVZABBYxfu91GhWUiciphnwhJ4AOpB8f12laiy-ehTFUj0TCePwAA"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation Drawer (Desktop) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-16 bottom-0 w-64 py-lg bg-surface-container-low border-r border-outline-variant">
+<div class="px-lg mb-md">
+<h2 class="font-label-md text-label-md text-outline uppercase tracking-wider">AI Agents</h2>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-md px-lg py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 rounded-r-full mr-4 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">code</span>
+<span class="font-label-md text-label-md">Coding Agent</span>
+</a>
+<a class="flex items-center gap-md px-lg py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 rounded-r-full mr-4 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">database</span>
+<span class="font-label-md text-label-md">SQL Master</span>
+</a>
+<a class="flex items-center gap-md px-lg py-3 bg-primary text-on-primary font-bold rounded-r-full mr-4 shadow-md translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">coffee</span>
+<span class="font-label-md text-label-md">Java Expert</span>
+</a>
+<a class="flex items-center gap-md px-lg py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 rounded-r-full mr-4 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">psychology</span>
+<span class="font-label-md text-label-md">Aptitude</span>
+</a>
+<a class="flex items-center gap-md px-lg py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 rounded-r-full mr-4 group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">record_voice_over</span>
+<span class="font-label-md text-label-md">Mock Interviews</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Grid -->
+<main class="pt-20 pb-20 lg:pl-64 min-h-screen">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg p-md lg:p-lg h-[calc(100vh-80px)]">
+<!-- Left Panel: Question List & Filters (3 Cols) -->
+<section class="md:col-span-3 flex flex-col gap-md overflow-hidden h-full">
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-title-md text-title-md text-primary mb-3">Java Practice</h3>
+<div class="flex flex-wrap gap-xs mb-3">
+<button class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-label-sm font-label-sm">OOP</button>
+<button class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-label-sm font-label-sm hover:bg-surface-container-highest transition-colors">Threads</button>
+<button class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-label-sm font-label-sm hover:bg-surface-container-highest transition-colors">Streams</button>
+</div>
+<div class="relative">
+<input class="w-full pl-9 pr-4 py-2 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md transition-all" placeholder="Search problems..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline text-[20px]">search</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto pr-1 space-y-3">
+<!-- Active Question -->
+<div class="p-md bg-surface-container-high border-l-4 border-primary rounded-r-xl cursor-pointer shadow-sm">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-tighter">Medium</span>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">check_circle</span>
+</div>
+<h4 class="font-title-md text-[16px] leading-tight mb-2">Multithreaded Producer-Consumer</h4>
+<p class="text-label-sm text-on-surface-variant line-clamp-2">Implement a thread-safe circular buffer for concurrent processing...</p>
+</div>
+<!-- Other Questions -->
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded-xl cursor-pointer hover:border-primary-container transition-all group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-amber-600 uppercase tracking-tighter">Hard</span>
+</div>
+<h4 class="font-title-md text-[16px] leading-tight mb-2">Custom Garbage Collector Logic</h4>
+<p class="text-label-sm text-on-surface-variant line-clamp-2">Simulate mark-and-sweep algorithm for a virtual memory space...</p>
+</div>
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded-xl cursor-pointer hover:border-primary-container transition-all group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-tighter">Medium</span>
+</div>
+<h4 class="font-title-md text-[16px] leading-tight mb-2">Immutable Class Design</h4>
+<p class="text-label-sm text-on-surface-variant line-clamp-2">Design a deeply immutable Address book with collection safety...</p>
+</div>
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded-xl cursor-pointer hover:border-primary-container transition-all group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-primary uppercase tracking-tighter">Easy</span>
+</div>
+<h4 class="font-title-md text-[16px] leading-tight mb-2">Singleton Pattern &amp; Reflection</h4>
+<p class="text-label-sm text-on-surface-variant line-clamp-2">Protect a singleton implementation from reflection-based attacks...</p>
+</div>
+</div>
+</section>
+<!-- Center Panel: Code Editor (6 Cols) -->
+<section class="md:col-span-6 flex flex-col bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm h-full">
+<div class="flex items-center justify-between px-md py-3 border-b border-outline-variant bg-surface-container-low">
+<div class="flex items-center gap-sm">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container rounded-md text-label-sm font-bold">Solution.java</span>
+<span class="text-label-sm text-outline">v1.2 Last saved 2m ago</span>
+</div>
+<div class="flex items-center gap-xs">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+</div>
+</div>
+<div class="flex-1 relative code-editor text-[14px] leading-relaxed p-md overflow-auto editor-focus outline-none" contenteditable="true" spellcheck="false">
+<pre class="text-on-surface-variant"><span class="text-primary-fixed-variant font-bold">import</span> java.util.concurrent.*;
+
+<span class="text-primary-fixed-variant font-bold">public class</span> ProducerConsumer {
+    <span class="text-secondary font-semibold">// Implement thread-safe buffer below</span>
+    <span class="text-primary-fixed-variant font-bold">private final</span> BlockingQueue&lt;Integer&gt; buffer;
+    
+    <span class="text-primary-fixed-variant font-bold">public</span> ProducerConsumer(<span class="text-primary-fixed-variant font-bold">int</span> capacity) {
+        <span class="text-primary-fixed-variant font-bold">this</span>.buffer = <span class="text-primary-fixed-variant font-bold">new</span> ArrayBlockingQueue&lt;&gt;(capacity);
+    }
+
+    <span class="text-primary-fixed-variant font-bold">public void</span> produce(<span class="text-primary-fixed-variant font-bold">int</span> value) <span class="text-primary-fixed-variant font-bold">throws</span> InterruptedException {
+        buffer.put(value);
+        System.out.println(<span class="text-on-tertiary-container">"Produced: "</span> + value);
+    }
+
+    <span class="text-primary-fixed-variant font-bold">public int</span> consume() <span class="text-primary-fixed-variant font-bold">throws</span> InterruptedException {
+        <span class="text-primary-fixed-variant font-bold">int</span> value = buffer.take();
+        System.out.println(<span class="text-on-tertiary-container">"Consumed: "</span> + value);
+        <span class="text-primary-fixed-variant font-bold">return</span> value;
+    }
+}
+</pre>
+</div>
+<div class="px-md py-4 border-t border-outline-variant bg-surface-container-low flex justify-between items-center">
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-5 py-2 bg-surface border border-outline-variant text-primary font-bold rounded-lg hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+<span>Run Tests</span>
+</button>
+</div>
+<button class="flex items-center gap-xs px-6 py-2 bg-primary text-on-primary font-bold rounded-lg shadow-lg hover:shadow-xl active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span>Submit Code</span>
+</button>
+</div>
+</section>
+<!-- Right Panel: AI Evaluation (3 Cols) -->
+<section class="md:col-span-3 flex flex-col gap-md h-full">
+<!-- Overall Score Card -->
+<div class="bg-primary-container text-white p-lg rounded-2xl shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-title-md text-title-md text-surface-container">AI Score</h3>
+<span class="px-2 py-1 bg-secondary text-on-secondary rounded-md text-label-sm">LIVE</span>
+</div>
+<div class="flex items-baseline gap-xs">
+<span class="text-[48px] font-black leading-none">88</span>
+<span class="text-on-primary-container font-semibold">/ 100</span>
+</div>
+<p class="text-label-sm text-on-primary-container mt-2">Excellent use of <span class="text-white font-bold">BlockingQueue</span>. Minor optimization possible in exception handling.</p>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-20">
+<span class="material-symbols-outlined text-[120px]">auto_awesome</span>
+</div>
+</div>
+<!-- Detailed Metrics -->
+<div class="flex-1 bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex flex-col gap-lg overflow-y-auto">
+<h4 class="font-title-md text-title-md text-primary">Performance Analysis</h4>
+<!-- Correctness -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md">Correctness</span>
+<span class="font-label-md text-label-md text-secondary">95%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[95%]"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Passes all 12 edge-case concurrency tests.</p>
+</div>
+<!-- Complexity -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md">Complexity</span>
+<span class="font-label-md text-label-md text-primary">82%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[82%]"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Time: O(1) operations. Space: O(N) buffer size.</p>
+</div>
+<!-- Quality -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md">Code Quality</span>
+<span class="font-label-md text-label-md text-amber-600">70%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 w-[70%]"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Missing Javadoc comments for public methods.</p>
+</div>
+<!-- AI Suggestions -->
+<div class="mt-auto pt-md border-t border-outline-variant">
+<h5 class="font-label-md text-label-md text-primary mb-2 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+                            AI Suggestion
+                        </h5>
+<div class="bg-surface-container p-3 rounded-lg border-l-4 border-amber-400">
+<p class="text-label-sm text-on-surface-variant italic">"Try using a <strong>Lock</strong> with <strong>Conditions</strong> to manually manage signals if you want to optimize for throughput."</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe bg-surface border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(30,27,75,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">exercise</span>
+<span class="font-label-sm text-label-sm">Practice</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple editor micro-interactions
+        const editor = document.querySelector('.code-editor');
+        editor.addEventListener('focus', () => {
+            editor.parentElement.classList.add('border-primary');
+        });
+        editor.addEventListener('blur', () => {
+            editor.parentElement.classList.remove('border-primary');
+        });
+
+        // Add keyboard shortcut simulation
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                console.log('Saving code...');
+                // Trigger visual feedback
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Onboarding - Placement Copilot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#c07a00",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-dim": "#d2d9f4",
+                        "surface-container-highest": "#dae2fd",
+                        "primary-fixed": "#e3dfff",
+                        "on-primary-container": "#8683ba",
+                        "on-tertiary-fixed": "#2a1700",
+                        "secondary-container": "#86f2e4",
+                        "on-surface-variant": "#47464f",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1e1b4b",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#5b598c",
+                        "surface-container-low": "#f2f3ff",
+                        "tertiary": "#140900",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "surface": "#faf8ff",
+                        "on-primary-fixed": "#181445",
+                        "secondary-fixed": "#89f5e7",
+                        "inverse-primary": "#c4c1fb",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#dae2fd",
+                        "on-secondary-fixed-variant": "#005049",
+                        "primary-fixed-dim": "#c4c1fb",
+                        "inverse-surface": "#283044",
+                        "secondary": "#006a61",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#faf8ff",
+                        "outline": "#787680",
+                        "on-error": "#ffffff",
+                        "primary": "#070235",
+                        "background": "#faf8ff",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary-container": "#331d00",
+                        "on-secondary-container": "#006f66",
+                        "on-primary-fixed-variant": "#444173",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-secondary-fixed": "#00201d",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "outline-variant": "#c8c5d0",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-container": "#eaedff",
+                        "on-surface": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "container-max": "1280px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-selected {
+            border-color: #070235 !important;
+            background-color: #86f2e420 !important;
+        }
+        .step-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute inset-0 pointer-events-none opacity-20 overflow-hidden">
+
+</div>
+<!-- Main Onboarding Container -->
+<main class="relative z-10 w-full max-w-[640px] px-md md:px-lg animate-in fade-in slide-in-from-bottom-8 duration-700">
+<!-- Progress Indicator -->
+<div class="mb-lg space-y-md">
+<div class="flex h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-1/3 bg-secondary h-full rounded-full transition-all duration-500 shadow-[0_0_8px_rgba(0,106,97,0.3)]"></div>
+<div class="w-1/3 bg-transparent h-full"></div>
+<div class="w-1/3 bg-transparent h-full"></div>
+</div>
+<div class="flex justify-center">
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full border border-outline-variant">Step 1 of 3</span>
+</div>
+</div>
+<!-- Wizard Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm md:p-xl p-lg space-y-lg relative overflow-hidden">
+<!-- Header -->
+<div class="text-center space-y-sm">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">What's your target role?</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[400px] mx-auto">We'll tailor your interview practice and learning path based on your career goal.</p>
+</div>
+<!-- Role Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md pt-md" id="role-grid">
+<!-- SDE -->
+<button class="group flex items-center justify-between p-lg border border-outline-variant rounded-xl bg-surface-bright hover:border-primary hover:shadow-md transition-all duration-200 text-left active:scale-95" onclick="selectRole(this)">
+<div class="flex items-center gap-md">
+<div class="p-sm bg-surface-container-low rounded-lg group-hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<span class="font-label-md text-label-md">SDE / Software Engineer</span>
+</div>
+<span class="material-symbols-outlined check-icon hidden text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<!-- Data Analyst -->
+<button class="group flex items-center justify-between p-lg border border-outline-variant rounded-xl bg-surface-bright hover:border-primary hover:shadow-md transition-all duration-200 text-left active:scale-95" onclick="selectRole(this)">
+<div class="flex items-center gap-md">
+<div class="p-sm bg-surface-container-low rounded-lg group-hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<span class="font-label-md text-label-md">Data Analyst</span>
+</div>
+<span class="material-symbols-outlined check-icon hidden text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<!-- Data Scientist -->
+<button class="group flex items-center justify-between p-lg border border-outline-variant rounded-xl bg-surface-bright hover:border-primary hover:shadow-md transition-all duration-200 text-left active:scale-95" onclick="selectRole(this)">
+<div class="flex items-center gap-md">
+<div class="p-sm bg-surface-container-low rounded-lg group-hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">experiment</span>
+</div>
+<span class="font-label-md text-label-md">Data Scientist</span>
+</div>
+<span class="material-symbols-outlined check-icon hidden text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<!-- Full Stack -->
+<button class="group flex items-center justify-between p-lg border border-outline-variant rounded-xl bg-surface-bright hover:border-primary hover:shadow-md transition-all duration-200 text-left active:scale-95" onclick="selectRole(this)">
+<div class="flex items-center gap-md">
+<div class="p-sm bg-surface-container-low rounded-lg group-hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">layers</span>
+</div>
+<span class="font-label-md text-label-md">Full Stack Developer</span>
+</div>
+<span class="material-symbols-outlined check-icon hidden text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<!-- ML Engineer -->
+<button class="group flex items-center justify-between p-lg border border-outline-variant rounded-xl bg-surface-bright hover:border-primary hover:shadow-md transition-all duration-200 text-left active:scale-95" onclick="selectRole(this)">
+<div class="flex items-center gap-md">
+<div class="p-sm bg-surface-container-low rounded-lg group-hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">psychology</span>
+</div>
+<span class="font-label-md text-label-md">ML Engineer</span>
+</div>
+<span class="material-symbols-outlined check-icon hidden text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<!-- Other -->
+<button class="group flex items-center justify-between p-lg border border-outline-variant rounded-xl bg-surface-bright hover:border-primary hover:shadow-md transition-all duration-200 text-left active:scale-95" onclick="selectRole(this)">
+<div class="flex items-center gap-md">
+<div class="p-sm bg-surface-container-low rounded-lg group-hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-primary">more_horiz</span>
+</div>
+<span class="font-label-md text-label-md">Other</span>
+</div>
+<span class="material-symbols-outlined check-icon hidden text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+</div>
+<!-- Footer Actions -->
+<div class="flex items-center justify-between pt-xl border-t border-outline-variant">
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-md py-2">
+                    Back
+                </button>
+<button class="bg-primary hover:bg-primary-container text-white px-xl py-3 rounded-full font-label-md text-label-md transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-sm hover:shadow-md active:scale-95 duration-200" disabled="" id="continue-btn">
+                    Continue
+                </button>
+</div>
+</div>
+<!-- Meta Info / Support -->
+<p class="text-center mt-lg font-label-sm text-label-sm text-on-surface-variant opacity-60">
+            Securely powered by Placement Copilot Engine.
+        </p>
+</main>
+<script>
+        function selectRole(element) {
+            // Remove existing selection from all cards
+            const grid = document.getElementById('role-grid');
+            const buttons = grid.querySelectorAll('button');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('card-selected');
+                btn.querySelector('.check-icon').classList.add('hidden');
+                // Revert icon background
+                const iconBox = btn.querySelector('.p-sm');
+                iconBox.classList.remove('bg-secondary/10');
+            });
+
+            // Apply selection to clicked element
+            element.classList.add('card-selected');
+            element.querySelector('.check-icon').classList.remove('hidden');
+            element.querySelector('.p-sm').classList.add('bg-secondary/10');
+
+            // Enable Continue button
+            const continueBtn = document.getElementById('continue-btn');
+            continueBtn.disabled = false;
+            
+            // Interaction Feedback
+            createRipple(event, element);
+        }
+
+        function createRipple(event, element) {
+            const circle = document.createElement("span");
+            const diameter = Math.max(element.clientWidth, element.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - element.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${event.clientY - element.getBoundingClientRect().top - radius}px`;
+            circle.classList.add("ripple");
+
+            const ripple = element.getElementsByClassName("ripple")[0];
+            if (ripple) { ripple.remove(); }
+            element.appendChild(circle);
+        }
+
+        // Add small inline styles for the ripple effect manually since tailwind won't handle dynamic keyframes as easily
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 600ms linear;
+                background-color: rgba(0, 106, 97, 0.1);
+                pointer-events: none;
+            }
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>

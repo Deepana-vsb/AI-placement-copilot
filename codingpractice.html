@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coding Practice — Placement Copilot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editor-container {
+            background-color: #0f172a; /* Slate 900 for dark editor contrast */
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .animate-pulse-subtle { animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#47464f",
+                        "surface-dim": "#d2d9f4",
+                        "secondary": "#006a61",
+                        "on-secondary-fixed-variant": "#005049",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#8683ba",
+                        "tertiary": "#140900",
+                        "surface": "#faf8ff",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#eaedff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#c07a00",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed": "#00201d",
+                        "surface-tint": "#5b598c",
+                        "tertiary-container": "#331d00",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container-highest": "#dae2fd",
+                        "inverse-primary": "#c4c1fb",
+                        "on-primary-fixed": "#181445",
+                        "on-primary-fixed-variant": "#444173",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#787680",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-container-high": "#e2e7ff",
+                        "secondary-container": "#86f2e4",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "primary-fixed-dim": "#c4c1fb",
+                        "surface-variant": "#dae2fd",
+                        "outline-variant": "#c8c5d0",
+                        "primary-fixed": "#e3dfff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-background": "#131b2e",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-container": "#006f66",
+                        "on-surface": "#131b2e",
+                        "secondary-fixed": "#89f5e7",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-container": "#1e1b4b",
+                        "primary": "#070235",
+                        "inverse-surface": "#283044",
+                        "surface-container-low": "#f2f3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-on-surface-variant shadow-sm dark:shadow-none">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<h1 class="font-display-lg text-title-md font-black text-primary dark:text-primary-fixed tracking-tight">Placement Copilot</h1>
+</div>
+<!-- Center: Streak & Goals -->
+<div class="hidden md:flex items-center gap-xl">
+<div class="flex items-center gap-sm bg-surface-container px-4 py-2 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-label-md text-on-surface">12 Day Streak</span>
+</div>
+<div class="flex flex-col w-48 gap-1">
+<div class="flex justify-between items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Daily Goal</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">3/5 Solved</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[60%] rounded-full shadow-[0_0_8px_rgba(0,106,97,0.3)]"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-full">search</button>
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim border-2 border-primary overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young developer looking confidently at the camera, wearing a modern tech-noir aesthetic outfit. The lighting is soft and directional, typical of high-end corporate photography. The background is a clean, slightly blurred office space with minimalist blue and white tones to match the professional SaaS UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsIcVlkmOUfhgqLncWUiwM5Vs8CzKUxGI2LtwZlvVDB4PuYwxYLRITUoFhsGsDGZaW2IZuwYBN6uGYgd1aLZc63-9QC8WT9elPb4YBI4vr_pDeEfDTKiT0KB-PKv2vtTAVWngyDTb95JBa3ioUpHyozjS68Bax5ydBBh19rf7LjWnYKDBGt6H4vdItq40Z18yRaCtDi2ELT0t7vnR6FLehcVPo4nVBkgJdeu0B0WFpRcZUBiKU5DOkklxbsJAKL5uCWcGNWXVWAD8"/>
+</div>
+</div>
+</header>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-16 bottom-0 py-lg bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant dark:border-on-surface-variant w-64 z-40">
+<div class="px-lg mb-md">
+<h2 class="font-label-md text-label-md uppercase tracking-wider text-outline">AI Agents</h2>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-md py-3 pl-lg bg-primary dark:bg-primary-fixed-dim text-on-primary dark:text-on-primary-fixed rounded-r-full font-bold mr-4 translate-x-1 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label-md text-label-md">Coding Agent</span>
+</a>
+<a class="flex items-center gap-md py-3 pl-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-r-full mr-4 hover:pl-2 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">SQL Master</span>
+</a>
+<a class="flex items-center gap-md py-3 pl-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-r-full mr-4 hover:pl-2 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">coffee</span>
+<span class="font-label-md text-label-md">Java Expert</span>
+</a>
+<a class="flex items-center gap-md py-3 pl-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-r-full mr-4 hover:pl-2 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-md text-label-md">Aptitude</span>
+</a>
+<a class="flex items-center gap-md py-3 pl-lg text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-r-full mr-4 hover:pl-2 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="font-label-md text-label-md">Mock Interviews</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 mt-16 mb-20 lg:mb-0 p-gutter flex flex-col lg:flex-row gap-gutter h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Filterable List -->
+<section class="lg:w-80 flex flex-col gap-md h-full overflow-hidden">
+<div class="bg-white border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex items-center justify-between mb-sm">
+<h3 class="font-title-md text-title-md text-on-surface">Questions</h3>
+<button class="material-symbols-outlined text-outline">filter_list</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm font-label-sm">Arrays</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-label-sm border border-outline-variant">Easy</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-label-sm border border-outline-variant">New</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto hide-scrollbar flex flex-col gap-sm">
+<!-- Question Card Active -->
+<div class="bg-white border-2 border-primary-container p-md rounded-xl shadow-md cursor-pointer transition-transform duration-200 active:scale-[0.98]">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-tight">Medium</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h4 class="font-label-md text-on-surface leading-tight">Two Sum II - Input Array Is Sorted</h4>
+<p class="text-label-sm text-outline mt-2">Hash Map, Pointers</p>
+</div>
+<!-- Question Card 2 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl hover:border-primary-container/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-on-error-container uppercase tracking-tight">Hard</span>
+</div>
+<h4 class="font-label-md text-on-surface group-hover:text-primary transition-colors leading-tight">Merge k Sorted Lists</h4>
+<p class="text-label-sm text-outline mt-2">Divide &amp; Conquer, Heap</p>
+</div>
+<!-- Question Card 3 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl hover:border-primary-container/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-tight">Easy</span>
+</div>
+<h4 class="font-label-md text-on-surface group-hover:text-primary transition-colors leading-tight">Valid Palindrome</h4>
+<p class="text-label-sm text-outline mt-2">String, Two Pointers</p>
+</div>
+<!-- Question Card 4 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl hover:border-primary-container/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-on-tertiary-fixed-variant uppercase tracking-tight">Medium</span>
+</div>
+<h4 class="font-label-md text-on-surface group-hover:text-primary transition-colors leading-tight">Top K Frequent Elements</h4>
+<p class="text-label-sm text-outline mt-2">Hash Table, Bucket Sort</p>
+</div>
+<!-- Question Card 5 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl hover:border-primary-container/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-tight">Easy</span>
+</div>
+<h4 class="font-label-md text-on-surface group-hover:text-primary transition-colors leading-tight">Best Time to Buy and Sell Stock</h4>
+<p class="text-label-sm text-outline mt-2">Array, DP</p>
+</div>
+</div>
+</section>
+<!-- Right/Main Area -->
+<section class="flex-1 flex flex-col gap-md h-full overflow-hidden relative">
+<!-- Problem & Editor Panes -->
+<div class="flex-1 grid grid-rows-2 lg:grid-rows-none lg:grid-cols-2 gap-md h-full overflow-hidden">
+<!-- Problem Statement Pane -->
+<div class="bg-white border border-outline-variant rounded-xl flex flex-col overflow-hidden shadow-sm">
+<div class="px-md py-3 border-b border-outline-variant bg-surface-container-low flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">description</span>
+<h2 class="font-label-md text-label-md text-on-surface">Problem Statement</h2>
+</div>
+<div class="p-md overflow-y-auto hide-scrollbar space-y-4">
+<h3 class="font-title-md text-title-md text-primary">Two Sum II - Input Array Is Sorted</h3>
+<div class="flex gap-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container border border-outline-variant text-outline">Time Limit: 1.0s</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container border border-outline-variant text-outline">Memory: 256MB</span>
+</div>
+<div class="prose prose-sm text-on-surface-variant font-body-md text-body-md leading-relaxed">
+<p>Given a 1-indexed array of integers <code class="bg-surface-container px-1 rounded">numbers</code> that is already sorted in non-decreasing order, find two numbers such that they add up to a specific <code class="bg-surface-container px-1 rounded">target</code> number.</p>
+<p>Let these two numbers be <code class="bg-surface-container px-1 rounded">numbers[index1]</code> and <code class="bg-surface-container px-1 rounded">numbers[index2]</code> where <code class="bg-surface-container px-1 rounded">1 &lt;= index1 &lt; index2 &lt;= numbers.length</code>.</p>
+<p>Return the indices of the two numbers, <code class="bg-surface-container px-1 rounded">index1</code> and <code class="bg-surface-container px-1 rounded">index2</code>, added by one as an integer array <code class="bg-surface-container px-1 rounded">[index1, index2]</code> of length 2.</p>
+<p class="font-semibold text-on-surface">Example 1:</p>
+<pre class="bg-surface-container p-3 rounded-lg text-sm">Input: numbers = [2,7,11,15], target = 9
+Output: [1,2]
+Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].</pre>
+</div>
+</div>
+</div>
+<!-- Code Editor Pane -->
+<div class="editor-container rounded-xl flex flex-col overflow-hidden shadow-2xl relative">
+<div class="px-md py-3 border-b border-slate-700 bg-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-sky-400" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<select class="bg-transparent text-white font-label-md text-label-md border-none focus:ring-0 p-0 cursor-pointer">
+<option>Python 3</option>
+<option>Java</option>
+<option>C++</option>
+</select>
+</div>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="flex-1 p-md font-mono text-sm leading-relaxed overflow-hidden">
+<div class="flex">
+<div class="w-8 text-slate-600 text-right pr-4 select-none">
+                                1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9
+                            </div>
+<div class="text-slate-300">
+<span class="text-pink-400">class</span> <span class="text-yellow-400">Solution</span>:<br/>
+                                    <span class="text-pink-400">def</span> <span class="text-blue-400">twoSum</span>(self, numbers: List[int], target: int) -&gt; List[int]:<br/>
+                                        left, right = <span class="text-orange-400">0</span>, <span class="text-blue-400">len</span>(numbers) - <span class="text-orange-400">1</span><br/>
+                                        <span class="text-pink-400">while</span> left &lt; right:<br/>
+                                            cur = numbers[left] + numbers[right]<br/>
+                                            <span class="text-pink-400">if</span> cur == target:<br/>
+                                                <span class="text-pink-400">return</span> [left + <span class="text-orange-400">1</span>, right + <span class="text-orange-400">1</span>]<br/>
+                                            <span class="text-slate-500"># Your implementation here...</span><br/>
+<span class="animate-pulse bg-sky-500 w-2 h-5 inline-block align-middle ml-1"></span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="p-md flex items-center justify-end gap-md bg-slate-800/50 backdrop-blur border-t border-slate-700">
+<button class="px-6 py-2 rounded-lg text-slate-300 font-label-md border border-slate-600 hover:bg-slate-700 transition-all">
+                            Run Code
+                        </button>
+<button class="px-8 py-2 rounded-lg bg-primary-container text-white font-label-md font-bold shadow-lg shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all">
+                            Submit
+                        </button>
+</div>
+</div>
+</div>
+<!-- AI Explanation Panel (Collapsible) -->
+<div class="absolute right-0 bottom-0 top-0 w-80 bg-white border-l border-outline-variant shadow-2xl translate-x-full transition-transform duration-500 ease-in-out z-20 flex flex-col" id="aiPanel">
+<div class="px-md py-4 border-b border-outline-variant bg-primary-container text-white flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined animate-pulse-subtle">auto_awesome</span>
+<span class="font-title-md text-label-md">AI Copilot</span>
+</div>
+<button class="material-symbols-outlined text-white hover:bg-white/10 p-1 rounded-full" onclick="toggleAI()">close</button>
+</div>
+<div class="p-md flex-1 overflow-y-auto hide-scrollbar space-y-6">
+<div class="space-y-2">
+<p class="font-label-md text-primary">Hint 1: Optimal Search</p>
+<p class="text-body-md text-on-surface-variant leading-relaxed">Since the array is already <b>sorted</b>, you can use the <b>Two-Pointer</b> technique to find the target sum in O(n) time.</p>
+</div>
+<div class="space-y-2">
+<p class="font-label-md text-primary">Efficiency Check</p>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant">
+<div class="flex items-center gap-2 text-secondary mb-1">
+<span class="material-symbols-outlined text-sm">flash_on</span>
+<span class="font-label-sm">Current approach is O(n)</span>
+</div>
+<p class="text-label-sm text-outline">Memory usage is O(1) - Excellent!</p>
+</div>
+</div>
+<div class="space-y-2 pt-4">
+<p class="font-label-md text-on-surface">Ask AI anything...</p>
+<div class="relative">
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-3 text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none min-h-[100px]" placeholder="How to optimize further?"></textarea>
+<button class="absolute bottom-3 right-3 bg-primary text-white p-2 rounded-full shadow-md">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Toggle Button -->
+<button class="absolute bottom-md right-md lg:right-0 bg-primary-container text-white p-4 rounded-full shadow-xl hover:scale-110 active:scale-95 transition-all z-10 flex items-center gap-2 group overflow-hidden" onclick="toggleAI()">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">auto_awesome</span>
+<span class="font-label-md pr-2 max-w-0 group-hover:max-w-[100px] opacity-0 group-hover:opacity-100 transition-all duration-300">Ask Copilot</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe bg-surface dark:bg-surface-container border-t border-outline-variant dark:border-on-surface-variant shadow-[0_-4px_6px_-1px_rgba(30,27,75,0.1)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors py-2 active:scale-90 duration-200">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-4 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined">exercise</span>
+<span class="font-label-sm text-label-sm">Practice</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors py-2 active:scale-90 duration-200">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors py-2 active:scale-90 duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+<script>
+        function toggleAI() {
+            const panel = document.getElementById('aiPanel');
+            panel.classList.toggle('translate-x-full');
+        }
+
+        // Simple typing effect for the cursor
+        let cursorVisible = true;
+        setInterval(() => {
+            const cursor = document.querySelector('.animate-pulse');
+            if (cursor) {
+                cursor.style.opacity = cursorVisible ? '0' : '1';
+                cursorVisible = !cursorVisible;
+            }
+        }, 600);
+    </script>
+</body></html>
