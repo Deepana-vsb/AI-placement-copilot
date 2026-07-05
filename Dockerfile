@@ -18,7 +18,7 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 # Install Java 17 JRE for the backend
-RUN apk add --no-cache openjdk17-jre-headless
+RUN apk add --no-cache openjdk17-jre
 
 # Copy the built backend jar
 COPY --from=backend-builder /app/target/backend-0.0.1-SNAPSHOT.jar ./backend.jar
