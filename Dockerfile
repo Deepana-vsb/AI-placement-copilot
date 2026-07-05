@@ -41,6 +41,6 @@ EXPOSE 8081
 # Set production env
 ENV NODE_ENV=production
 ENV PORT=8080
-ENV BACKEND_URL=http://localhost:8081
+ENV BACKEND_URL=http://127.0.0.1:8081
 
 CMD ["./start.sh"]
